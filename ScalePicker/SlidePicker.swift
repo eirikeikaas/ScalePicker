@@ -506,7 +506,7 @@ open class SlidePicker: UIView, UICollectionViewDelegateFlowLayout, UICollection
     open func scrollToValue(_ value: CGFloat, animated: Bool) {
         var indexPath: IndexPath?
         
-        guard sectionsCount > 0, value <= (values?.last ?? 0) else { return }
+        guard sectionsCount > 0 else { return }
         
         if let values = values {
             let valueIndex = values.firstIndex(where: {$0 == value}) ?? 0
