@@ -18,6 +18,7 @@ public enum ScalePickerValuePosition {
 }
 
 public protocol ScalePickerDelegate {
+    func willChangeScaleValue(_ picker: ScalePicker, value: CGFloat)
     func didChangeScaleValue(_ picker: ScalePicker, value: CGFloat)
 }
 
@@ -495,6 +496,7 @@ open class ScalePicker: UIView, SlidePickerDelegate {
     }
     
     open func reset() {
+        delegate?.willChangeScaleValue(self, value: initialValue)
         currentValue = initialValue
         delegate?.didChangeScaleValue(self, value: currentValue)
         valueChangeHandler(currentValue)
@@ -528,6 +530,7 @@ open class ScalePicker: UIView, SlidePickerDelegate {
         shouldUpdatePicker = false
         
         if value != currentValue {
+            delegate?.willChangeScaleValue(self, value: value)
             currentValue = value
             delegate?.didChangeScaleValue(self, value: value)
             valueChangeHandler(value)
